@@ -69,7 +69,7 @@ describe('express-json-error-handler', () => {
       errorHandler(err, null, res);
 
       expect(res.status).to.have.been.calledWith(400);
-      const clientErr = res.json.getCall(0).args[0];
+      const [clientErr] = res.json.getCall(0).args;
 
       expect(clientErr).to.have.property('status')
         .and.equal(400);
@@ -124,7 +124,7 @@ describe('express-json-error-handler', () => {
       errorHandler(err, null, res);
 
       expect(res.status).to.have.been.calledWith(400);
-      const clientErr = res.json.getCall(0).args[0];
+      const [clientErr] = res.json.getCall(0).args;
 
       expect(clientErr).to.have.property('status')
         .and.equal(400);
