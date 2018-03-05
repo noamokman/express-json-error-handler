@@ -100,7 +100,7 @@ describe('express-json-error-handler', () => {
     it('should ignore stack on production', function () {
       this.timeout(5000);
 
-      mockery.registerMock('in-production', true);
+      mockery.registerMock('./in-production', true);
 
       mockery.enable({
         useCleanCache: true,
