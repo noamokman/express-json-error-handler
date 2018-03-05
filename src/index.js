@@ -1,8 +1,8 @@
 import httpStatus from 'http-status';
-import inProduction from 'in-production';
 import statuses from 'statuses';
 import _ from 'lodash';
 
+const inProduction = process.env.NODE_ENV === 'production';
 export default function ({log} = {}) {
   return (err, req, res, next) => { // eslint-disable-line no-unused-vars
     let status = err.status || err.statusCode || httpStatus.INTERNAL_SERVER_ERROR;
