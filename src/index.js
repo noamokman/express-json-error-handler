@@ -1,5 +1,5 @@
 import httpStatus from 'http-status';
-import inProduction from 'in-production';
+import inProduction from './in-production';
 import statuses from 'statuses';
 import _ from 'lodash';
 
