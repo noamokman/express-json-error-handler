@@ -1,5 +1,4 @@
 import httpStatus from 'http-status';
-import inProduction from './in-production';
 import statuses from 'statuses';
 import _ from 'lodash';
 
@@ -17,7 +16,7 @@ export default function ({log} = {}) {
       status
     };
 
-    if (!inProduction) {
+    if (process.env.NODE_ENV !== 'production') {
       body.stack = err.stack;
     }
 
