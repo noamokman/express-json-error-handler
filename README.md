@@ -1,4 +1,4 @@
-# express-json-error-handler [![Build Status](https://travis-ci.org/noamokman/express-json-error-handler.svg?branch=master)](https://travis-ci.org/noamokman/express-json-error-handler) [![Coverage Status](https://coveralls.io/repos/github/noamokman/express-json-error-handler/badge.svg?branch=master)](https://coveralls.io/github/noamokman/express-json-error-handler?branch=master)
+# express-json-error-handler [![Build Status](https://travis-ci.org/noamokman/express-json-error-handler.svg?branch=master)](https://travis-ci.org/noamokman/express-json-error-handler) [![Coverage Status](https://coveralls.io/repos/github/noamokman/express-json-error-handler/badge.svg?branch=master)](https://coveralls.io/github/noamokman/express-json-error-handler?branch=master) [![Greenkeeper badge](https://badges.greenkeeper.io/noamokman/express-json-error-handler.svg)](https://greenkeeper.io/)
 
 Error handler for express JSON APIs
 
