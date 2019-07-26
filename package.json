@@ -1,6 +1,6 @@
 {
   "name": "express-json-error-handler",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "description": "Error handler for express JSON APIs",
   "main": "lib/index.js",
   "directories": {
