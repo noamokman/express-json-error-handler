@@ -2,10 +2,9 @@
 
 Error handler for express JSON APIs
 
-
-## Installation
+## Install
 ``` bash
-$ [sudo] npm install express-json-error-handler --save
+$ npm install express-json-error-handler
 ```
 
 ## Usage

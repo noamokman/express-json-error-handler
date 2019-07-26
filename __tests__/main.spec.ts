@@ -24,7 +24,7 @@ describe('express-json-error-handler', () => {
 
       const err = new Error('error');
 
-      errorHandler(err, null, res);
+      errorHandler(err, null as any, res as any, null as any);
 
       expect(res.status).toHaveBeenCalledWith(500);
     });
@@ -37,11 +37,11 @@ describe('express-json-error-handler', () => {
         status: jest.fn()
       };
 
-      const err = new Error('error');
+      const err: Error & { statusCode?: number } = new Error('error');
 
       err.statusCode = 214;
 
-      errorHandler(err, null, res);
+      errorHandler(err, null as any, res as any, null as any);
 
       expect(res.status).toHaveBeenCalledWith(500);
     });
@@ -54,11 +54,11 @@ describe('express-json-error-handler', () => {
         status: jest.fn()
       };
 
-      const err = new Error('error');
+      const err: Error & { statusCode?: number } = new Error('error');
 
       err.statusCode = 400;
 
-      errorHandler(err, null, res);
+      errorHandler(err, null as any, res as any, null as any);
 
       expect(res.status).toHaveBeenCalledWith(400);
       const [[clientErr]] = res.json.mock.calls;
@@ -79,9 +79,9 @@ describe('express-json-error-handler', () => {
         status: jest.fn()
       };
 
-      const err = new Error('error');
+      const err: Error & { statusCode?: number } = new Error('error');
 
-      errorHandler(err, null, res);
+      errorHandler(err, null as any, res as any, null as any);
 
       expect(log).toHaveBeenCalledWith({res, req: null, err});
     });
@@ -100,7 +100,7 @@ describe('express-json-error-handler', () => {
         status: jest.fn()
       };
 
-      const err = new Error('error');
+      const err: Error & { statusCode?: number } = new Error('error');
 
       err.statusCode = 400;
 
