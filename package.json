@@ -7,12 +7,11 @@
     "test": "test"
   },
   "scripts": {
-    "lint": "run-p lint-*",
-    "lint-src": "eslint src --fix --ext .ts",
-    "lint-tests": "eslint __tests__ --fix --ext .ts",
+    "lint": "run-p lint:*",
+    "lint:src": "eslint src --fix --ext .ts",
+    "lint:tests": "eslint __tests__ --fix --ext .ts",
     "precommit": "lint-staged",
     "commitmsg": "commitlint -e",
-    "babel": "babel src -d lib -s",
     "jest": "jest",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "prepublishOnly": "npm run build",
