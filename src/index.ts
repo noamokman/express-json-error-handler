@@ -1,11 +1,12 @@
-import {INTERNAL_SERVER_ERROR, BAD_REQUEST} from 'http-status';
-import statuses from 'statuses';
+import {STATUS_CODES} from 'http';
 import {assign, pick} from 'lodash';
-import {ErrorRequestHandler} from 'express';
+import type {Response, Request, NextFunction} from 'express';
 
 export interface ExpressJsonErrorHandlerOptions {
-  log?: ({err, req, res}: { err: Error; req: Express.Request; res: Express.Response }) => void;
+  log?: ({err, req, res}: { err: Error; req: Request; res: Response }) => void;
 }
+
+export type ErrorWithStatus = Error & { status?: number; statusCode?: number };
 
 export interface ResponseBody {
   status: number;
@@ -16,11 +17,11 @@ export interface ResponseBody {
   type?: any;
 }
 
-export default ({log}: ExpressJsonErrorHandlerOptions = {}): ErrorRequestHandler => (err, req, res, next) => { // eslint-disable-line @typescript-eslint/no-unused-vars
-  let status: number = err.status || err.statusCode || INTERNAL_SERVER_ERROR;
+export default ({log}: ExpressJsonErrorHandlerOptions = {}) => (err: ErrorWithStatus, req: Request, res: Response, _: NextFunction) => {
+  let status: number = err.status ?? err.statusCode ?? 500;
 
-  if (status < BAD_REQUEST) {
-    status = INTERNAL_SERVER_ERROR;
+  if (status < 400) {
+    status = 500;
   }
 
   res.status(status);
@@ -33,8 +34,8 @@ export default ({log}: ExpressJsonErrorHandlerOptions = {}): ErrorRequestHandler
     body.stack = err.stack;
   }
 
-  if (status >= INTERNAL_SERVER_ERROR) {
-    body.message = statuses[status];
+  if (status >= 500) {
+    body.message = STATUS_CODES[status];
 
     if (log) {
       log({err, req, res});
