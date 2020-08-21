@@ -39,7 +39,7 @@
   },
   "homepage": "https://github.com/noamokman/express-json-error-handler#readme",
   "engines": {
-    "node": ">=8"
+    "node": ">=10"
   },
   "lint-staged": {
     "*.{js,ts}": "eslint --fix"
