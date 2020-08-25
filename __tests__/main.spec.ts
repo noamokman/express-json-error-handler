@@ -37,9 +37,9 @@ describe('express-json-error-handler', () => {
         status: jest.fn()
       };
 
-      const err: Error & { statusCode?: number } = new Error('error');
+      const err: Error & { status?: number } = new Error('error');
 
-      err.statusCode = 214;
+      err.status = 214;
 
       errorHandler(err, null as any, res as any, null as any);
 
