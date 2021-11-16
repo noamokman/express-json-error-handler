@@ -47,11 +47,7 @@ export default ({log, extraFields}: ExpressJsonErrorHandlerOptions = {}) => (err
     return;
   }
 
-  if (!extraFields) {
-    return;
-  }
-
-  assign(body, pick(err,  [...(extraFields ?? {}), 'message', 'code', 'name', 'type']));
+  assign(body, pick(err,  [...(extraFields ?? []), 'message', 'code', 'name', 'type']));
 
   res.json(body);
 };
