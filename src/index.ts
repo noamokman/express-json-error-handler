@@ -4,6 +4,7 @@ import type {Response, Request, NextFunction} from 'express';
 
 export interface ExpressJsonErrorHandlerOptions {
   log?: ({err, req, res}: { err: Error; req: Request; res: Response }) => void;
+  extraFields?: string[];
 }
 
 export type ErrorWithStatus = Error & { status?: number; statusCode?: number };
@@ -17,7 +18,7 @@ export interface ResponseBody {
   type?: any;
 }
 
-export default ({log}: ExpressJsonErrorHandlerOptions = {}) => (err: ErrorWithStatus, req: Request, res: Response, _: NextFunction) => {
+export default ({log, extraFields}: ExpressJsonErrorHandlerOptions = {}) => (err: ErrorWithStatus, req: Request, res: Response, _: NextFunction) => {
   let status: number = err.status ?? err.statusCode ?? 500;
 
   if (status < 400) {
@@ -46,7 +47,11 @@ export default ({log}: ExpressJsonErrorHandlerOptions = {}) => (err: ErrorWithSt
     return;
   }
 
-  assign(body, pick(err, ['message', 'code', 'name', 'type']));
+  if (!extraFields) {
+    return;
+  }
+
+  assign(body, pick(err,  [...(extraFields ?? {}), 'message', 'code', 'name', 'type']));
 
   res.json(body);
 };
