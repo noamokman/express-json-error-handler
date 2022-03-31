@@ -19,11 +19,12 @@ describe('express-json-error-handler', () => {
 
       const res = {
         json: jest.fn(),
-        status: jest.fn()
+        status: jest.fn(),
       };
 
       const err = new Error('error');
 
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       errorHandler(err, null as any, res as any, null as any);
 
       expect(res.status).toHaveBeenCalledWith(500);
@@ -34,13 +35,14 @@ describe('express-json-error-handler', () => {
 
       const res = {
         json: jest.fn(),
-        status: jest.fn()
+        status: jest.fn(),
       };
 
       const err: Error & { status?: number } = new Error('error');
 
       err.status = 214;
 
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       errorHandler(err, null as any, res as any, null as any);
 
       expect(res.status).toHaveBeenCalledWith(500);
@@ -51,13 +53,14 @@ describe('express-json-error-handler', () => {
 
       const res = {
         json: jest.fn(),
-        status: jest.fn()
+        status: jest.fn(),
       };
 
       const err: Error & { statusCode?: number } = new Error('error');
 
       err.statusCode = 400;
 
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       errorHandler(err, null as any, res as any, null as any);
 
       expect(res.status).toHaveBeenCalledWith(400);
@@ -72,18 +75,19 @@ describe('express-json-error-handler', () => {
     it('should handle a log method', () => {
       const log = jest.fn();
 
-      const errorHandler = jsonErrorHandler({log});
+      const errorHandler = jsonErrorHandler({ log });
 
       const res = {
         json: jest.fn(),
-        status: jest.fn()
+        status: jest.fn(),
       };
 
       const err: Error & { statusCode?: number } = new Error('error');
 
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       errorHandler(err, null as any, res as any, null as any);
 
-      expect(log).toHaveBeenCalledWith({res, req: null, err});
+      expect(log).toHaveBeenCalledWith({ res, req: null, err });
     });
 
     it('should ignore stack on production', () => {
@@ -97,7 +101,7 @@ describe('express-json-error-handler', () => {
 
       const res = {
         json: jest.fn(),
-        status: jest.fn()
+        status: jest.fn(),
       };
 
       const err: Error & { statusCode?: number } = new Error('error');
