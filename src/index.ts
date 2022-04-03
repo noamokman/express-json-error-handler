@@ -1,5 +1,5 @@
 import { STATUS_CODES } from 'http';
-import { assign, pick } from 'lodash';
+import { assign, pick } from 'lodash-es';
 import type { Response, Request, NextFunction } from 'express';
 
 export interface ExpressJsonErrorHandlerOptions {

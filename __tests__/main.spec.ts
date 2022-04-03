@@ -1,3 +1,5 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { jest } from '@jest/globals';
 import jsonErrorHandler from '../src';
 
 describe('express-json-error-handler', () => {
@@ -90,12 +92,11 @@ describe('express-json-error-handler', () => {
       expect(log).toHaveBeenCalledWith({ res, req: null, err });
     });
 
-    it('should ignore stack on production', () => {
+    it('should ignore stack on production', async () => {
       process.env.NODE_ENV = 'production';
 
-      jest.resetModules();
-
-      const jsonErrorHandler = require('../src').default;
+      // eslint-disable-next-line import/dynamic-import-chunkname
+      const { default: jsonErrorHandler } = await import('../src');
 
       const errorHandler = jsonErrorHandler();
 
@@ -108,7 +109,8 @@ describe('express-json-error-handler', () => {
 
       err.statusCode = 400;
 
-      errorHandler(err, null, res);
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+      errorHandler(err, null as any, res as any, null as any);
 
       expect(res.status).toHaveBeenCalledWith(400);
       const [[clientErr]] = res.json.mock.calls;
