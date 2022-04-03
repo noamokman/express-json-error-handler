@@ -1,12 +1,14 @@
 {
   "name": "express-json-error-handler",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "description": "Error handler for express JSON APIs",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     }
   },
+  "types": "./dist/index.d.ts",
   "type": "module",
   "scripts": {
     "lint:base": "eslint . --ext .ts",
