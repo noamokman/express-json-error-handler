@@ -17,7 +17,7 @@
     "lint:base": "eslint . --ext .ts",
     "lint": "yarn lint:base --fix",
     "format": "prettier --write '**/*.{ts,js,json}'",
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest --runInBand",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest --config tests/jest.config.ts",
     "build": "tsc",
     "prepare": "husky install"
   },
@@ -64,34 +64,10 @@
     "lint-staged": "^13.0.2",
     "prettier": "^2.7.1",
     "ts-jest": "^28.0.5",
+    "ts-node": "^10.8.1",
     "typescript": "^4.7.4"
   },
   "dependencies": {
     "lodash-es": "^4.17.21"
-  },
-  "jest": {
-    "collectCoverage": true,
-    "preset": "ts-jest/presets/default-esm",
-    "testEnvironment": "node",
-    "coverageThreshold": {
-      "global": {
-        "branches": 100,
-        "functions": 100,
-        "lines": 100,
-        "statements": 100
-      }
-    },
-    "extensionsToTreatAsEsm": [
-      ".ts"
-    ],
-    "testMatch": [
-      "**/__tests__/**/*.spec.ts"
-    ],
-    "globals": {
-      "ts-jest": {
-        "useESM": true
-      }
-    },
-    "transform": {}
   }
 }

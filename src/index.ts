@@ -1,4 +1,4 @@
-import { STATUS_CODES } from 'http';
+import { STATUS_CODES } from 'node:http';
 import { assign, pick } from 'lodash-es';
 import type { Response, Request, NextFunction } from 'express';
 

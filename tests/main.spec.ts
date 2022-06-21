@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { jest } from '@jest/globals';
-import jsonErrorHandler from '../src';
+import jsonErrorHandler from '../src/index.js';
 
 describe('express-json-error-handler', () => {
   describe('exports', () => {
@@ -95,10 +95,9 @@ describe('express-json-error-handler', () => {
     it('should ignore stack on production', async () => {
       process.env.NODE_ENV = 'production';
 
-      // eslint-disable-next-line import/dynamic-import-chunkname
-      const { default: jsonErrorHandler } = await import('../src');
+      const { default: productionJsonErrorHandler } = await import('../src/index.js');
 
-      const errorHandler = jsonErrorHandler();
+      const errorHandler = productionJsonErrorHandler();
 
       const res = {
         json: jest.fn(),
