@@ -12,17 +12,17 @@ $ npm install express-json-error-handler
 ### Example
 ``` js
 import express from 'express';
-import jsonErrorHandler from 'express-json-error-handler';
+import {expressJsonErrorHandler} from 'express-json-error-handler';
 
 const app = express();
 
-app.use(jsonErrorHandler());
+app.use(expressJsonErrorHandler());
 
 ```
 
 ## Options
 
-The `jsonErrorHandler` function takes an option `options` object that may contain any of
+The `expressJsonErrorHandler` function takes an option `options` object that may contain any of
 the following keys:
 
 ### log
@@ -31,11 +31,11 @@ The `log` option, if supplied, is called as `log({err, req, res})` when server e
 #### Example
 ``` js
 import express from 'express';
-import jsonErrorHandler from 'express-json-error-handler';
+import {expressJsonErrorHandler} from 'express-json-error-handler';
 
 const app = express();
 
-app.use(jsonErrorHandler({
+app.use(expressJsonErrorHandler({
   log({err, req, res}) {
     console.log(err); // The original error object
     console.log(req); // The request object

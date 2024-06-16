@@ -1,5 +1,4 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { jest } from '@jest/globals';
+import { describe, it, expect, vi } from 'vitest';
 import jsonErrorHandler from '../src/index.js';
 
 describe('express-json-error-handler', () => {
@@ -20,8 +19,8 @@ describe('express-json-error-handler', () => {
       const errorHandler = jsonErrorHandler();
 
       const res = {
-        json: jest.fn(),
-        status: jest.fn(),
+        json: vi.fn(),
+        status: vi.fn(),
       };
 
       const err = new Error('error');
@@ -36,8 +35,8 @@ describe('express-json-error-handler', () => {
       const errorHandler = jsonErrorHandler();
 
       const res = {
-        json: jest.fn(),
-        status: jest.fn(),
+        json: vi.fn(),
+        status: vi.fn(),
       };
 
       const err: Error & { status?: number } = new Error('error');
@@ -54,8 +53,8 @@ describe('express-json-error-handler', () => {
       const errorHandler = jsonErrorHandler();
 
       const res = {
-        json: jest.fn(),
-        status: jest.fn(),
+        json: vi.fn(),
+        status: vi.fn(),
       };
 
       const err: Error & { statusCode?: number } = new Error('error');
@@ -75,13 +74,13 @@ describe('express-json-error-handler', () => {
     });
 
     it('should handle a log method', () => {
-      const log = jest.fn();
+      const log = vi.fn();
 
       const errorHandler = jsonErrorHandler({ log });
 
       const res = {
-        json: jest.fn(),
-        status: jest.fn(),
+        json: vi.fn(),
+        status: vi.fn(),
       };
 
       const err: Error & { statusCode?: number } = new Error('error');
@@ -100,8 +99,8 @@ describe('express-json-error-handler', () => {
       const errorHandler = productionJsonErrorHandler();
 
       const res = {
-        json: jest.fn(),
-        status: jest.fn(),
+        json: vi.fn(),
+        status: vi.fn(),
       };
 
       const err: Error & { statusCode?: number } = new Error('error');
