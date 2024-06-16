@@ -18,7 +18,8 @@ export interface ResponseBody {
   type?: any;
 }
 
-export default ({ log, extraFields }: ExpressJsonErrorHandlerOptions = {}) =>
+export const expressJsonErrorHandler =
+  ({ log, extraFields }: ExpressJsonErrorHandlerOptions = {}) =>
   (err: ErrorWithStatus, req: Request, res: Response, _: NextFunction) => {
     let status: number = err.status ?? err.statusCode ?? 500;
 
@@ -52,3 +53,5 @@ export default ({ log, extraFields }: ExpressJsonErrorHandlerOptions = {}) =>
 
     res.json(body);
   };
+
+export default expressJsonErrorHandler;
