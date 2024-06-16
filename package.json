@@ -1,6 +1,6 @@
 {
   "name": "express-json-error-handler",
-  "version": "6.0.0",
+  "version": "6.1.0",
   "description": "Error handler for express JSON APIs",
   "exports": {
     "types": "./dist/index.d.ts",
